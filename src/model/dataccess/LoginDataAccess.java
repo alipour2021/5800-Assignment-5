@@ -9,16 +9,14 @@ import model.entities.User;
 public class LoginDataAccess {
 
 	public Boolean verifyCredentials(User user) throws ClassNotFoundException, SQLException {
-
+/*
 		final String URL = "jdbc:postgresql://localhost:5432/authentication";
-
 		final String USER = "postgres";
-
-		final String PWD = "123";
-
+		final String PWD = "root";
 		Class.forName("org.postgresql.Driver");
 		Connection conection = DriverManager.getConnection(URL, USER, PWD);
-
+*/
+		Connection conection = ConnectionFactory.connect();
 		final PreparedStatement stmt = conection.prepareStatement("SELECT * FROM users WHERE username=? and password=?");
 
 		stmt.setString(1, user.getUserName());
@@ -31,4 +29,3 @@ public class LoginDataAccess {
 	}
 
 }
-
